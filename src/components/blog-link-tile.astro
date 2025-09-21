@@ -1,0 +1,44 @@
+---
+import type BlogMetadata from "../types/blog-metadata"
+
+const {metadata} = Astro.props as {metadata: BlogMetadata};
+---
+<a href={metadata.url}>
+    <div class="blog-link-header">{metadata.title.toUpperCase()}</div>
+    <div class="blog-link-details">
+        {metadata.authorForename} {metadata.authorSurname},
+        {metadata.topic},
+        {metadata.datePublished.toDateString()}
+    </div>
+</a>
+
+<style>
+    a {
+        border: dashed;
+        color: inherit;
+        display: block;
+        margin: 10px 0px 10px 0px;
+        padding: 10px;
+        text-decoration: inherit;
+        width: fit-content;
+    }
+
+    .blog-link-header {
+        font-family: "Fira Code", "Courier New";
+        font-size: large;
+    }
+
+    .blog-link-details {
+        font-style: italic;
+    }
+
+    :hover {
+        background-color: cyan;
+        border-width: thick;
+    }
+
+    :active {
+        background-color: orange;
+        border-width: thick;
+    }
+</style>
