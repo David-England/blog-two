@@ -1,4 +1,5 @@
 ---
+import { formatDate } from "../utilities/date-util"
 import type BlogMetadata from "../types/blog-metadata"
 
 const {metadata} = Astro.props as {metadata: BlogMetadata};
@@ -6,7 +7,7 @@ const {metadata} = Astro.props as {metadata: BlogMetadata};
 <a href={metadata.url}>
     <div class="blog-link-header">{metadata.title.toUpperCase()}</div>
     <div class="blog-link-details">
-        {metadata.authorName}, {metadata.topic}, {metadata.datePublished.toDateString()}
+        {metadata.authorName}, {metadata.topic}, {formatDate(metadata.datePublished)}
     </div>
 </a>
 
