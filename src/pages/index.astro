@@ -6,8 +6,7 @@ import type BlogMetadata from "../types/blog-metadata"
 function convert(obj: any): BlogMetadata {
     return {
         title: obj.frontmatter.title,
-        authorForename: obj.frontmatter.authorForename,
-        authorSurname: obj.frontmatter.authorSurname,
+        authorName: obj.frontmatter.authorName,
         topic: obj.frontmatter.topic,
         datePublished: new Date(),
         url: obj.url

@@ -6,9 +6,7 @@ const {metadata} = Astro.props as {metadata: BlogMetadata};
 <a href={metadata.url}>
     <div class="blog-link-header">{metadata.title.toUpperCase()}</div>
     <div class="blog-link-details">
-        {metadata.authorForename} {metadata.authorSurname},
-        {metadata.topic},
-        {metadata.datePublished.toDateString()}
+        {metadata.authorName}, {metadata.topic}, {metadata.datePublished.toDateString()}
     </div>
 </a>
 
