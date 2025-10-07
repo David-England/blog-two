@@ -1,8 +1,11 @@
 ---
+import "./blog-layout.css";
 import DefaultLayout from "./default-layout.astro";
 
 const {frontmatter} = Astro.props;
 ---
 <DefaultLayout title={frontmatter.title}>
-    <slot />
+    <div class="md-container">
+        <slot />
+    </div>
 </DefaultLayout>
