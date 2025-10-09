@@ -4,7 +4,7 @@ import DefaultLayout from "./default-layout.astro";
 
 const {frontmatter} = Astro.props;
 ---
-<DefaultLayout title={frontmatter.title}>
+<DefaultLayout title={frontmatter.title} tabName={frontmatter.title}>
     <div class="md-container">
         <slot />
     </div>

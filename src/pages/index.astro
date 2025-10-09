@@ -17,7 +17,7 @@ function convert(obj: any): BlogMetadata {
 const blogs: any[] = Object.values(import.meta.glob("./blogs/*.md", {eager: true}));
 ---
 
-<DefaultLayout title={"Willkommen"}>
+<DefaultLayout title={"Willkommen"} tabName={"neon95"}>
     {(blogs.map(convert).map(
         b => <BlogLinkTile metadata={b} />
     ))}
