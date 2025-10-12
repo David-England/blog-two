@@ -1,6 +1,7 @@
 ---
 import "./reset.css";
 import Header from "../components/header.astro";
+import NavButton from "../components/nav-button.astro";
 
 const {title, tabName} = Astro.props;
 ---
@@ -15,6 +16,7 @@ const {title, tabName} = Astro.props;
 	</head>
 	<body>
 		<Header title={"neon95"} />
+		<NavButton text="About" url="/about" />
 		<h1>{title}</h1>
         <slot />
 	</body>

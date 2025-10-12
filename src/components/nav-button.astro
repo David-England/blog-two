@@ -1,0 +1,30 @@
+---
+const {text, url} = Astro.props;
+---
+<a href={url}>{text}</a>
+
+<style>
+    a {
+        color: inherit;
+        display: inline-block;
+        width: fit-content;
+        background-color: lightgray;
+        font-family: "Fira Code", "Courier New";
+        font-size: large;
+        margin-right: 5px;
+        opacity: .8;
+        text-decoration: inherit;
+    }
+
+    a:hover {
+        background-color: cyan;
+        border: solid;
+        border-width: thick;
+    }
+
+    a:active {
+        background-color: orange;
+        border: solid;
+        border-width: thick;
+    }
+</style>
