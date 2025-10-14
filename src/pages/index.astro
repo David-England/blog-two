@@ -1,24 +1,16 @@
 ---
 import BlogLinkTile from "../components/blog-link-tile.astro";
 import DefaultLayout from "../layouts/default-layout.astro";
-import { readDate_yyyyMMdd } from "../utilities/date-util"
-import type BlogMetadata from "../types/blog-metadata"
+import { convertGlobMeta, sort } from "../utilities/metadata-util";
 
-function convert(obj: any): BlogMetadata {
-    return {
-        title: obj.frontmatter.title,
-        authorName: obj.frontmatter.authorName,
-        topic: obj.frontmatter.topic,
-        datePublished: readDate_yyyyMMdd(obj.frontmatter.datePublished),
-        url: obj.url
-    }
-}
-
-const blogs: any[] = Object.values(import.meta.glob("./blogs/*.md", {eager: true}));
+const blogs = Object.values(import.meta.glob("./blogs/*.md", {eager: true}))
+    .map(convertGlobMeta)
+    .sort(sort)
+    .toReversed();
 ---
 
 <DefaultLayout title={"Willkommen"} tabName={"neon95"}>
-    {(blogs.map(convert).map(
+    {(blogs.map(
         b => <BlogLinkTile metadata={b} />
     ))}
 </DefaultLayout>
