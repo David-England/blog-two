@@ -2,8 +2,12 @@
 import "./reset.css";
 import Header from "../components/header.astro";
 import NavBar from "../components/nav-bar.astro";
+import { convertGlobMeta, getTopics } from "../utilities/metadata-util";
 
 const {title, tabName} = Astro.props;
+const blogs = Object.values(import.meta.glob("/src/pages/blogs/*.md", {eager: true}))
+    .map(convertGlobMeta);
+const topics = getTopics(blogs);
 ---
 <html lang="en">
 	<head>
@@ -16,7 +20,7 @@ const {title, tabName} = Astro.props;
 	</head>
 	<body>
 		<Header title={"neon95"} />
-		<NavBar />
+		<NavBar topics={topics} />
 		<h1>{title}</h1>
         <slot />
 	</body>

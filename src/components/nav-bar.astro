@@ -1,7 +1,17 @@
 ---
 import NavButton from "./nav-button.astro";
+import type TopicMetadata from "../types/topic-metadata"
+
+interface Props {
+    topics: TopicMetadata[]
+}
+
+const {topics} = Astro.props;
 ---
 <div>
+    {topics.map(
+        t => <NavButton text={t.name} url={t.url} />
+    )}
     <NavButton text="About" url="/about" />
 </div>
 

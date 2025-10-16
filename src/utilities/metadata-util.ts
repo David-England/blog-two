@@ -1,5 +1,6 @@
 import { readDate_yyyyMMdd } from "./date-util";
 import type BlogMetadata from "../types/blog-metadata"
+import type TopicMetadata from "../types/topic-metadata"
 
 export function convertGlobMeta(obj: any): BlogMetadata {
     return {
@@ -9,6 +10,11 @@ export function convertGlobMeta(obj: any): BlogMetadata {
         datePublished: readDate_yyyyMMdd(obj.frontmatter.datePublished),
         url: obj.url
     }
+}
+
+export function getTopics(blogs: BlogMetadata[]): TopicMetadata[] {
+    const namesDegenerate = blogs.map(b => b.topic);
+    return [...new Set(namesDegenerate)].map(s => ({name: s, url: `/topic/${s.toLowerCase()}`}));
 }
 
 export function sort(bm1: BlogMetadata, bm2: BlogMetadata): number {
