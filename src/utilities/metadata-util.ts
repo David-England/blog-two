@@ -17,7 +17,7 @@ export function getTopics(blogs: BlogMetadata[]): TopicMetadata[] {
     return [...new Set(namesDegenerate)].map(s => ({name: s, url: `/topic/${s.toLowerCase()}`}));
 }
 
-export function sort(bm1: BlogMetadata, bm2: BlogMetadata): number {
+export function sortBlog(bm1: BlogMetadata, bm2: BlogMetadata): number {
     if (bm1.datePublished > bm2.datePublished)
         return 1;
     if (bm1.datePublished < bm2.datePublished)
@@ -25,6 +25,15 @@ export function sort(bm1: BlogMetadata, bm2: BlogMetadata): number {
     if (bm1.title.toUpperCase() > bm2.title.toUpperCase())
         return 1;
     if (bm1.title.toUpperCase() < bm2.title.toUpperCase())
+        return -1;
+
+    return 0;
+}
+
+export function sortTopic(tm1: TopicMetadata, tm2: TopicMetadata): number {
+    if (tm1.name > tm2.name)
+        return 1;
+    if (tm1.name < tm2.name)
         return -1;
 
     return 0;

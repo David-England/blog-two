@@ -1,5 +1,6 @@
 ---
 import NavButton from "./nav-button.astro";
+import { sortTopic } from "../utilities/metadata-util";
 import type TopicMetadata from "../types/topic-metadata"
 
 interface Props {
@@ -9,7 +10,7 @@ interface Props {
 const {topics} = Astro.props;
 ---
 <div>
-    {topics.map(
+    {topics.sort(sortTopic).map(
         t => <NavButton text={t.name} url={t.url} />
     )}
     <NavButton text="About" url="/about" />
