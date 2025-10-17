@@ -1,0 +1,27 @@
+---
+import BlogLinkTile from "../../components/blog-link-tile.astro";
+import DefaultLayout from "../../layouts/default-layout.astro";
+import { convertGlobMeta, getTopics, sortBlog } from "../../utilities/metadata-util";
+
+export function getStaticPaths() {
+    const blogs = Object.values(import.meta.glob("../blogs/*.md", {eager: true}))
+        .map(convertGlobMeta);
+
+    return getTopics(blogs)
+        .map(t => ({params: {topic: t.name.toLowerCase()}}));
+}
+
+const {topic = ""} = Astro.params;
+const topicUpper = topic.toUpperCase();
+const blogsWithTopic = Object.values(import.meta.glob("../blogs/*.md", {eager: true}))
+    .map(convertGlobMeta)
+    .filter(b => b.topic.toLowerCase() === topic)
+    .sort(sortBlog)
+    .toReversed();
+---
+<DefaultLayout title={topicUpper} tabName={`neon95 | ${topicUpper}`}>
+    <p>Here are all the blogs under the category {topicUpper}.</p>
+    {blogsWithTopic.map(
+        b => <BlogLinkTile metadata={b} />
+    )}
+</DefaultLayout>
