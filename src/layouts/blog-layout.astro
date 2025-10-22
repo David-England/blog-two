@@ -1,11 +1,28 @@
 ---
 import "./blog-layout.css";
+import BlogLinkTile from "../components/blog-link-tile.astro";
 import DefaultLayout from "./default-layout.astro";
+import { convertGlobMeta, getLatestBlogExcept } from "../utilities/metadata-util";
 
 const {frontmatter} = Astro.props;
+const blogs = Object.values(import.meta.glob("/src/pages/blogs/*.md", {eager: true}))
+    .map(convertGlobMeta);
+const latestOtherBlog = getLatestBlogExcept(frontmatter.title, blogs);
 ---
 <DefaultLayout title={frontmatter.title} tabName={frontmatter.title}>
     <div class="md-container">
         <slot />
     </div>
 </DefaultLayout>
+
+{latestOtherBlog &&
+<div>
+    <p><i>You may also like:</i></p>
+    <BlogLinkTile metadata={latestOtherBlog} />
+</div>}
+
+<style>
+    i {
+        font-style: italic;
+    }
+</style>

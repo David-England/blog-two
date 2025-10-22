@@ -17,6 +17,20 @@ export function getTopics(blogs: BlogMetadata[]): TopicMetadata[] {
     return [...new Set(namesDegenerate)].map(s => ({name: s, url: `/topic/${s.toLowerCase()}`}));
 }
 
+export function getLatestBlogExcept(titleToExclude: string, blogs: BlogMetadata[]):
+    BlogMetadata | undefined {
+    const remainingBlogs = blogs
+        .filter(b => b.title != titleToExclude)
+        .sort(sortBlog)
+        .toReversed();
+
+    if (remainingBlogs.length > 0) {
+        return remainingBlogs[0];
+    } else {
+        return undefined;
+    }
+}
+
 export function sortBlog(bm1: BlogMetadata, bm2: BlogMetadata): number {
     if (bm1.datePublished > bm2.datePublished)
         return 1;
