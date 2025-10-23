@@ -15,7 +15,11 @@
     max-width: 100%;
 }
 
-.md-container img + p {
+.md-container p:has(img) {
+    margin: 0px;
+}
+
+.md-container p:has(img) + p {
     font-style: italic;
     margin-top: 0px;
 }
