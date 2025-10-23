@@ -8,7 +8,7 @@ const blogs = Object.values(import.meta.glob("./blogs/*.md", {eager: true}))
     .sort(sortBlog)
     .toReversed();
 ---
-<DefaultLayout title={"Willkommen"} tabName={"neon95"}>
+<DefaultLayout title={"Hallo"} tabName={"neon95"}>
     {(blogs.map(
         b => <BlogLinkTile metadata={b} />
     ))}
