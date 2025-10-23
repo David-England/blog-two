@@ -19,3 +19,34 @@
     font-style: italic;
     margin-top: 0px;
 }
+
+.md-container table {
+    border-collapse: collapse;
+}
+
+.md-container th {
+    background-color: lightgrey;
+    border-left: solid;
+    border-right: solid;
+    font-weight: bold;
+    padding: 4px;
+}
+
+.md-container td {
+    border-left: solid;
+    border-right: solid;
+    padding: 4px;
+}
+
+.md-container tr:nth-child(odd) {
+    background-color: lightcyan;
+}
+
+.md-container tr:hover {
+    background-color: cyan;
+}
+
+.md-container table + p {
+    font-style: italic;
+    margin-top: 0px;
+}
