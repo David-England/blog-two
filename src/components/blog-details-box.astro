@@ -1,0 +1,22 @@
+---
+import { formatDate } from "../utilities/date-util";
+import type BlogMetadata from "../types/blog-metadata"
+
+interface Props {
+    blog: BlogMetadata
+}
+
+const {blog} = Astro.props;
+---
+<div class="tile">
+    <div>{blog.topic.toUpperCase()}</div>
+    <div>{blog.authorName}, {formatDate(blog.datePublished)}</div>
+</div>
+
+<style>
+    div.tile {
+        background-color: lightgray;
+        padding: 10px;
+        width: fit-content;
+    }
+</style>

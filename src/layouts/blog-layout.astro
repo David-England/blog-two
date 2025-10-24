@@ -1,15 +1,17 @@
 ---
 import "./md-styles.css";
+import BlogDetailsBox from "../components/blog-details-box.astro";
 import BlogLinkTile from "../components/blog-link-tile.astro";
 import DefaultLayout from "./default-layout.astro";
 import { convertGlobMeta, getLatestBlogExcept } from "../utilities/metadata-util";
 
-const {frontmatter} = Astro.props;
+const {frontmatter, url} = Astro.props;
 const blogs = Object.values(import.meta.glob("/src/pages/blogs/*.md", {eager: true}))
     .map(convertGlobMeta);
 const latestOtherBlog = getLatestBlogExcept(frontmatter.title, blogs);
 ---
 <DefaultLayout title={frontmatter.title} tabName={frontmatter.title}>
+    <BlogDetailsBox blog={convertGlobMeta({frontmatter, url})} />
     <div class="md-container">
         <slot />
     </div>
