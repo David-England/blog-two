@@ -15,13 +15,13 @@ const latestOtherBlog = getLatestBlogExcept(frontmatter.title, blogs);
     <div class="md-container">
         <slot />
     </div>
-</DefaultLayout>
 
-{latestOtherBlog &&
-<div>
-    <p><i>You may also like:</i></p>
-    <BlogLinkTile metadata={latestOtherBlog} />
-</div>}
+    {latestOtherBlog &&
+    <div>
+        <p><i>You may also like:</i></p>
+        <BlogLinkTile metadata={latestOtherBlog} />
+    </div>}
+</DefaultLayout>
 
 <style>
     i {
